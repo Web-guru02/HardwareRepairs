@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    
+    <title>FIX-MECH</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+*
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+header
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px 100px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .logo
+{
+  font-size:45px;
+  color: #7f01df;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.toggle
+{
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: url(menu.png);
+  background-repeat: no-repeat;
+  background-size: 50px;
+  background-position: center;
+  cursor: pointer;
+}
+.toggle.active
+{
+  background: url(close.png);
+  background-repeat: no-repeat;
+  background-size: 50px;
+  background-position: center;
+  cursor: pointer;
+}
+.showcase
+{
+  position: absolute;
+  right: 0;
+  width: 100%;
+  min-height: 100vh;
+  padding: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #111;
+  transition: 0.5s;
+  z-index: 2;
+}
+.showcase.active
+{
+  right: 300px;
+}
+
+.video1
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+.overlay
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #03a9f4;
+  mix-blend-mode: overlay;
+}
+.text
+{
+  position: relative;
+  z-index: 10;
+  margin: 40px 0;
+}
+
+.text h2
+{
+  font-size: 50px;
+  font-weight: 800;
+  color: #eee12b;
+  line-height: 1em;
+  text-transform: uppercase;
+}
+.text h3
+{
+  font-size: 40px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1em;
+  text-transform: uppercase;
+}
+.text p
+{
+  font-size: 1.1em;
+  color: #fff;
+  margin: 20px 0;
+  font-weight: 400;
+  max-width: 700px;
+}
+.text ol
+{
+  font-size: 1.0em;
+  color: #fff;
+  font-weight: 400;
+  max-width: 700px;
+}
+.text ul
+{
+  font-size: 1.0em;
+  color: #fff;
+  font-weight: 400;
+  max-width: 700px;
+}
+.text a
+{
+  display: inline-block;
+  font-size: 1em;
+  background: #fff;
+  padding: 10px 30px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: 10px;
+  color: #111;
+  letter-spacing: 2px;
+  transition: 0.2s;
+}
+.text a:hover
+{
+  letter-spacing: 6px;
+}
+
+.table{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.table td,.table th{
+  padding:7px 5px;
+  border:1px solid #ddd;
+  text-align: center;
+  font-size:16px;
+}
+
+.table th{
+	background-color: #eee12b;
+	color:#ffffff;
+}
+
+.table tbody tr:nth-child(even){
+	background-color: #f5f5f5;
+}
+
+.social
+{
+  color: #fff;
+  font-size: 55px;
+  position: absolute;
+  z-index: 10;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.social li
+{
+  list-style: none;
+}
+.social li a
+{
+  display: inline-block;
+  margin-right: 20px;
+  filter: invert(1);
+  transform: scale(0.5);
+  transition: 0.5s;
+}
+.social li a:hover
+{
+  transform: scale(0.5) translateY(-15px);
+}
+.footer{
+  background: rgb(11, 73, 153);
+  position: relative;
+  z-index: 2;
+  bottom: -1740px;
+  
+}
+.footer .box h2{
+  color: #fff;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.menu
+{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu ul
+{
+  position: relative;
+}
+.menu ul li
+{
+  list-style: none;
+}
+.menu ul li a
+{
+  text-decoration: none;
+  font-size: 24px;
+  color: #111;
+}
+.menu ul li a:hover
+{
+  color: #03a9f4; 
+}
+
+@media(max-width: 500px){
+	.table thead{
+		display: none;
+	}
+
+	.table, .table tbody, .table tr, .table td{
+		display: block;
+		width: 100%;
+	}
+	.table tr{
+		margin-bottom:15px;
+	}
+	.table td{
+		text-align: right;
+		padding-left: 50%;
+		text-align: right;
+		position: relative;
+	}
+	.table td::before{
+		content: attr(data-label);
+		position: absolute;
+		left:0;
+		width: 50%;
+		padding-left:15px;
+		font-size:15px;
+		font-weight: bold;
+		text-align: left;
+	}
+}
+
+
+@media (max-width: 991px)
+{
+  .showcase,
+  .showcase header
+  {
+    padding: 40px;
+  }
+ 
+  .text
+  {
+    margin: 200px 0;
+  }
+  
+  .text h2
+  {
+    font-size: 35px;
+  }
+  .text h3
+  {
+    font-size: 30px;
+  }
+  
+  .footer .box h2{
+    position: relative;
+    color: #fff;
+    z-index: 2;
+    top: 1440px;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  
+}
+    </style>
+</head>
+<body>
+    <section class="showcase">
+      <header>
+        <h2 class="logo"><i class="fa fa-hammer"></i>Fix-Mech</h2>
+        <div class="toggle"></div>
+      </header>
+        <video src="river_-_14205 (540p).mp4" muted loop autoplay class="video1"></video>
+        <div class="overlay"></div>
+        <div class="text">
+          <h3>Your</h3>
+          <h2>Ultimate Hardware</h2> 
+          <h3>& repair resource company</h3>
+          <p>Fix-Mech is a Company dedicated to help you keep your hardware and mechanical systems run smoothly and efficiently. Join our community of fixers and discover the expertise you need to tackle and repair any challenge.Here's a list of the services offered at our company;
+            <ol>
+              <li>DIY Repair Guides</li>
+              <li>Proffesional Repair Services</li>
+              <li>Maintenance Tips</li>
+            </ol>
+            <ul>
+              <li>Parts and Tools Shop</li>
+              <li>Troubleshooting Assistance</li>
+              <li>Customer Assistance</li>
+            </ul>
+          </p>
+          <p>
+            Here's an example of a link; <br><a href="https://youtu.be/gCLUIzOsgGg?si=ri50Lq8kNZ6DtB0A" target="_blank">"CLICK HERE"</a>
+          </p>
+          <p>
+            Here's an image of what we do; <br>
+            <img src="hardware.jpg" alt="Hardware" width="300" height="250">
+          </p>
+          <p> 
+            Here's a video of what we do; <br>
+            <video src="tutorial.mp4" alt="Hardware" width="300" height="250" controls></video>
+        </p>
+        
+        <p> Here's a table of what we do;  </p>
+        
+  <table class="table">
+          <thead>
+            <tr>
+             <th>Serial No</th>
+             <th>Services Offered</th>
+             <th>Description</th>
+             <th>Quality</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td data-label="Serial No">1</td>
+                  <td data-label="Services Offered">DIY Repair Guides</td>
+                  <td data-label="Description">Step-by-step instructions  and tutorials for DIY enthusiasts</td>
+                  <td data-label="Quality">GOOD</td>
+              </tr>
+     
+              <tr>
+                  <td data-label="Serial No">2</td>
+                  <td data-label="Services Offered">Proffesional Repair Services</td>
+                  <td data-label="Description">Certified technicians available for complex repairs</td>
+                  <td data-label="Quality">GOOD</td>
+             </tr>
+     
+              <tr>
+                  <td data-label="Serial No">3</td>
+                  <td data-label="Services Offered">Maintenance Tips</td>
+                  <td data-label="Description">Tips and schedules for routine maintenance</td>
+                  <td data-label="Quality">GOOD</td>
+              </tr>
+     
+              <tr>
+                  <td data-label="Serial No">4</td>
+                  <td data-label="Services Offered">Parts and Tools Shop</td>
+                  <td data-label="Description">Online store for purchasing hardware components and tools</td>
+                  <td data-label="Quality">GOOD</td>
+              </tr>
+              <tr>
+                <td data-label="Serial No">5</td>
+                <td data-label="Services Offered">Troubleshooting Assistance</td>
+                <td data-label="Description">Interactive guides and forums to help diagnose problems</td>
+                <td data-label="Quality">GOOD</td>
+            </tr>
+            <tr>
+              <td data-label="Serial No">6</td>
+              <td data-label="Services Offered">Customer Assistance</td>
+              <td data-label="Description">Contact information for getting personalized repair assistance</td>
+              <td data-label="Quality">GOOD</td>
+          </tr>
+          </tbody>
+        </table>
+    </div>
+  <ul class="social">
+          <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+          <li><a href="#"><i class="fab fa-google"></i></a></li>
+        </ul>
+   </section>
+
+
+   <!-- footer section starts  -->
+
+<section class="footer">
+
+      <div class="box">
+          <h2>Joseph Kakuta Mutua</h2>
+          <h2>Com/m/0001/2021</h2>
+      </div>
+
+</section>
+
+<!-- footer section ends -->
+
+      <div class="menu">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="about.html">About-Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact-Us</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </div>
+      
+      <script>
+        const menuToggle = document.querySelector('.toggle');
+      const showcase = document.querySelector('.showcase');
+
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        showcase.classList.toggle('active');
+      })
+      </script>
+</body>
+</html>
